@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 
@@ -35,6 +36,7 @@ public class Mode1 extends JFrame {
     private JLabel sizesLabel;
     private JLabel finishLabel;
     private JLabel timeLabel;
+    private JLabel promoLabel;
     private SpinnerModel quantityModel;
     private JSpinner quantity;
     private String[] sizesItems = {"4 x 6", "5 x 7", "8 x 10"};
@@ -43,7 +45,9 @@ public class Mode1 extends JFrame {
     private JComboBox<String> finish;
     private String[] timeItems = {"Next Day", "1-Hour"};
     private JComboBox<String> time;
+    private JTextField promo;
     private JButton submit;
+    private PhotoCostCalculator calc;
     
     public Mode1() {
         initializeComponents();
@@ -60,17 +64,20 @@ public class Mode1 extends JFrame {
     
     private void initializeComponents() {
         mainPanel = new JPanel(new BorderLayout());
-        formPanel = new JPanel(new GridLayout(4,2));
+        formPanel = new JPanel(new GridLayout(5,2));
         quantityLabel = new JLabel("Print Quantity (1 to 100): ");
         sizesLabel = new JLabel("Sizes: ");
         finishLabel = new JLabel("Finish: ");
         timeLabel = new JLabel("Processing Time: ");
+        promoLabel = new JLabel("Promo Code: ");
         quantityModel = new SpinnerNumberModel(1, 1, 100, 1);
         quantity = new JSpinner(quantityModel);
         sizes = new JComboBox<String>(sizesItems);
         finish = new JComboBox<String>(finishItems);
         time = new JComboBox<String>(timeItems);
+        promo = new JTextField(20);
         submit = new JButton("Submit Order");
+        calc = new PhotoCostCalculatorMode1();
     }
     
     private void createPanel() {
@@ -82,12 +89,34 @@ public class Mode1 extends JFrame {
         formPanel.add(finish);
         formPanel.add(timeLabel);
         formPanel.add(time);
+        formPanel.add(promoLabel);
+        formPanel.add(promo);
         mainPanel.add(formPanel, BorderLayout.NORTH);
         mainPanel.add(submit, BorderLayout.SOUTH);
     }
     
     private void addListeners() {
         submit.addActionListener(new ButtonListener());
+    }
+    
+    public int getQuantity() {
+    	return (int) quantity.getValue();
+    }
+    
+    public String getSizes() {
+    	return sizes.getSelectedItem().toString();
+    }
+    
+    public String getFinish() {
+    	return finish.getSelectedItem().toString();
+    }
+    
+    public String getProcessingTime() {
+    	return time.getSelectedItem().toString();
+    }
+    
+    public String getPromoCode() {
+    	return promo.getText();
     }
     
     private class ButtonListener implements ActionListener {
@@ -100,7 +129,13 @@ public class Mode1 extends JFrame {
             JButton b = (JButton) aE.getSource();
             
             if (b.equals(submit)) {
-                JOptionPane.showMessageDialog(null, "The total cost for your order is: ");
+            	double sizeCost = calc.getSizeCost(getQuantity(), getSizes());
+            	double finishCost = calc.getFinishCost(getQuantity(), getFinish(), getSizes());
+            	double processingTimeCost = calc.getProcessingTimeCost(getQuantity(), getProcessingTime());
+            	double promoDiscount = calc.getPromoDiscount(getQuantity(), getPromoCode());
+            	double totalCost = sizeCost + finishCost + processingTimeCost + promoDiscount;
+            	String total = String.format("%.2f", totalCost);
+                JOptionPane.showMessageDialog(null, "The total cost for your order is: $" + total);
             }
         }
         
