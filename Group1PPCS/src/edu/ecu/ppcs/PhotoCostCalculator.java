@@ -8,4 +8,9 @@ public interface PhotoCostCalculator {
 	public double getProcessingTimeCost(int quantity, String processingTime);
 	
 	public double getPromoDiscount(int quantity, String promoCode);
+	
+	public double getQuantityCost(int quantity);
+	
+	
+	
 }
