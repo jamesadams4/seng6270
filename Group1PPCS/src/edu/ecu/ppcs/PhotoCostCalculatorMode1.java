@@ -66,4 +66,10 @@ public class PhotoCostCalculatorMode1 implements PhotoCostCalculator {
 		return 0.0;
 	}
 
+	@Override
+	public double getQuantityCost(int quantity) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

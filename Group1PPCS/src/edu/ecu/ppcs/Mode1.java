@@ -49,11 +49,12 @@ public class Mode1 extends JFrame {
     private JButton submit;
     private PhotoCostCalculator calc;
     
-    public Mode1() {
+    public Mode1(PhotoCostCalculator calc) {
         initializeComponents();
         createPanel();
         addListeners();
         setLayout(new BorderLayout());
+        this.calc = calc;
         add(mainPanel, BorderLayout.CENTER);
         setSize(350, 200);
         setTitle("Photo Print Cost System");
@@ -77,7 +78,6 @@ public class Mode1 extends JFrame {
         time = new JComboBox<String>(timeItems);
         promo = new JTextField(20);
         submit = new JButton("Submit Order");
-        calc = new PhotoCostCalculatorMode1();
     }
     
     private void createPanel() {

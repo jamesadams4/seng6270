@@ -49,4 +49,16 @@ public class PhotoCostCalculatorMode2 implements PhotoCostCalculator {
 		return 0.0;
 	
 }
+
+	@Override
+	public double getProcessingTimeCost(int quantity, String processingTime) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getPromoDiscount(int quantity, String promoCode) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
