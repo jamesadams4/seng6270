@@ -6,11 +6,5 @@ public interface PhotoCostCalculator {
 	public double getFinishCost(int quantity, String finish, String size);
 	
 	public double getProcessingTimeCost(int quantity, String processingTime);
-	
-	public double getPromoDiscount(int quantity, String promoCode);
-	
-	public double getQuantityCost(int quantity);
-	
-	
-	
+
 }

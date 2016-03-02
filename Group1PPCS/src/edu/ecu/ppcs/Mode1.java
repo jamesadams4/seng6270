@@ -47,9 +47,9 @@ public class Mode1 extends JFrame {
     private JComboBox<String> time;
     private JTextField promo;
     private JButton submit;
-    private PhotoCostCalculator calc;
+    private PhotoCostCalculatorMode1 calc;
     
-    public Mode1(PhotoCostCalculator calc) {
+    public Mode1(PhotoCostCalculatorMode1 calc) {
         initializeComponents();
         createPanel();
         addListeners();
@@ -134,6 +134,11 @@ public class Mode1 extends JFrame {
             	double processingTimeCost = calc.getProcessingTimeCost(getQuantity(), getProcessingTime());
             	double promoDiscount = calc.getPromoDiscount(getQuantity(), getPromoCode());
             	double totalCost = sizeCost + finishCost + processingTimeCost + promoDiscount;
+            	
+            	if (totalCost > 35.00) {
+            		totalCost = totalCost - (totalCost * 0.05);
+            	}
+            	
             	String total = String.format("%.2f", totalCost);
                 JOptionPane.showMessageDialog(null, "The total cost for your order is: $" + total);
             }

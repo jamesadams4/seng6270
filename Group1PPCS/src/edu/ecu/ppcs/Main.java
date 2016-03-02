@@ -27,11 +27,11 @@ public class Main {
                       options, options[0]);
     
       if (mode == 0) {
-    	  PhotoCostCalculator calc = new PhotoCostCalculatorMode1();
-          Mode1 mode1 = new Mode1(calc);
+    	  PhotoCostCalculatorMode1 calc1 = new PhotoCostCalculatorMode1();
+          Mode1 mode1 = new Mode1(calc1);
       } else if (mode == 1) {
-    	  PhotoCostCalculator calc = new PhotoCostCalculatorMode2();
-          Mode1 mode1 = new Mode1(calc);
+    	  PhotoCostCalculatorMode2 calc2 = new PhotoCostCalculatorMode2();
+          Mode2 mode2 = new Mode2(calc2);
       }
   }
 

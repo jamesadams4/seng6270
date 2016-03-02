@@ -58,18 +58,11 @@ public class PhotoCostCalculatorMode1 implements PhotoCostCalculator {
 		return 0.0;
 	}
 
-	@Override
 	public double getPromoDiscount(int quantity, String promoCode) {
 		if (quantity == 100 && promoCode.equals("N56M2")) {
 			return -2.00;
 		}
 		return 0.0;
-	}
-
-	@Override
-	public double getQuantityCost(int quantity) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }
