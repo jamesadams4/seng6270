@@ -30,7 +30,7 @@ public class PhotoCostCalculatorMode1 implements PhotoCostCalculator {
 			} else if (quantity >= 76 && quantity <= 100) {
 				total += 0.34 * 50;
 				total += 0.31 * 25;
-				total += 0.28 * (quantity-75)
+				total += 0.28 * (quantity-75);
 				return total;
 			}
 		} else if (size.equals("8 x 10")) {
