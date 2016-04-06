@@ -135,7 +135,7 @@ public class Mode1 extends JFrame {
             	double promoDiscount = calc.getPromoDiscount(getQuantity(), getPromoCode());
             	double totalCost = sizeCost + finishCost + processingTimeCost + promoDiscount;
             	
-            	if (totalCost > 35.00) {
+            	if (totalCost > 35.00 && promoDiscount == 0.00) {
             		totalCost = totalCost - (totalCost * 0.05);
             	}
             	
